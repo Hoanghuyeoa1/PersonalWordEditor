@@ -1,0 +1,48 @@
+{
+  "name": "personalwordeditor",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "node --test --experimental-strip-types src/document/documentModel.test.ts src/editor/editorExtensions.test.ts src/editor/editorCore.test.ts src/editor/editorFormatting.test.ts src/editor/editorParagraph.test.ts src/editor/editorSearch.test.ts src/document/documentFile.test.ts src/file/fileProtection.test.ts src/editor/editorZoomAndStats.test.ts src/editor/phase1EndToEndWorkflow.test.ts src/page/pageSettings.test.ts src/page/pageRendering.test.ts src/page/layoutRibbonSequences.test.ts src/page/customMargins.test.ts src/page/pageBreak.test.ts src/page/pagination.test.ts src/page/section.test.ts src/page/headerFooter.test.ts src/page/phase2FinalAudit.test.ts src/page/paginationContract.test.ts src/page/pageLayoutMap.test.ts src/page/paragraphFlow.test.ts src/page/paragraphPaginationRules.test.ts src/page/breaksSectionsGeometry.test.ts src/page/editorInteractionSafety.test.ts src/page/nonSplittableObjectFlow.test.ts src/page/tablePaginationFlow.test.ts src/page/tableEditingSafety.test.ts src/page/centralPageMapping.test.ts src/page/incrementalReflow.test.ts src/page/semanticPaginationPersistence.test.ts src/page/phase14FinalAudit.test.ts src/insert/insertEngine.test.ts src/insert/phase3_2.test.ts src/insert/phase3_3.test.ts src/insert/phase3_4.test.ts src/insert/phase3_7.test.ts src/insert/phase3_8.test.ts src/insert/phase3_9_finalAudit.test.ts src/docx/docxImport.test.ts src/docx/docxExport.test.ts src/docx/docxCompatibilityAudit.test.ts src/docx/docxReviewIntegration.test.ts src/review/reviewEngine.test.ts src/review/proofing/spellCheck.test.ts src/review/proofing/grammarCheck.test.ts src/review/comments/commentsCore.test.ts src/review/trackChanges/trackChangesCore.test.ts src/review/trackChanges/trackChangesAcceptReject.test.ts src/review/statistics/documentStatistics.test.ts src/review/phase5FinalAudit.test.ts src/references/referencesEngine.test.ts src/references/headingNavigation.test.ts src/references/tableOfContents.test.ts src/references/footnotesEndnotes.test.ts src/references/captionsCrossReference.test.ts src/references/citationBibliography.test.ts src/references/phase6FinalAudit.test.ts src/references/referencesPersistence.test.ts src/references/captionList.test.ts src/references/captionListUpdate.test.ts src/references/captionListUx.test.ts src/references/captionListDocxExport.test.ts src/references/bookmarkCore.test.ts src/references/bookmarkCrossReference.test.ts src/references/bookmarkUx.test.ts src/references/bookmarkDocxInteroperability.test.ts src/references/phase11FinalIntegration.test.ts src/commands/unifiedCommands.test.ts src/version/versionHistory.test.ts src/focus/focusMode.test.ts src/styles/stylesFoundation.test.ts src/styles/styleResolution.test.ts src/styles/paragraphStyleApplication.test.ts src/styles/characterStyles.test.ts src/styles/styleManagement.test.ts src/styles/stylesUI.test.ts src/styles/stylesPersistence.test.ts src/docx/docxStyleImport.test.ts src/docx/docxStyleExport.test.ts src/docx/docxSemanticPagination.test.ts src/styles/phase10FinalAudit.test.ts src/editor/tableTopology.test.ts src/editor/tableRowColSpanOperations.test.ts src/editor/tableSizing.test.ts src/editor/tableDimensions.test.ts src/editor/tableStyles.test.ts src/components/table/tableToolbar.test.ts src/page/tablePaginationIntegration.test.ts src/editor/tableEditingSafetyPhase9.test.ts src/editor/tablePersistencePhase10.test.ts src/docx/docxTableImportPhase11.test.ts src/docx/docxTableExportPhase12.test.ts src/editor/tablePhase13Integration.test.ts src/docx/docxDrawingAnchorPhase7.test.ts src/docx/docxFloatingImagePhase8.test.ts src/docx/docxTextWrappingPhase9.test.ts src/docx/docxFloatingTextBoxPhase10.test.ts src/docx/docxShapePhase11.test.ts src/docx/docxAdvancedHeaderFooterPhase12.test.ts src/docx/docxUnsupportedSafetyPhase13.test.ts src/docx/docxCrossSubsystemRoundTripPhase14.test.ts src/docx/docxFinalValidationPhase15.test.ts src/review/trackChanges/formattingRevisionFoundation.test.ts src/review/trackChanges/characterFormattingCapture.test.ts src/review/trackChanges/paragraphFormattingRevisions.test.ts src/review/trackChanges/styleAssignmentRevisions.test.ts src/review/trackChanges/formattingAcceptRejectCore.test.ts src/review/trackChanges/mixedRevisionLifecycle.test.ts src/review/trackChanges/formattingReviewUI.test.ts src/review/trackChanges/revisionHistoryConsistency.test.ts src/review/trackChanges/formattingRevisionPersistence.test.ts src/docx/docxFormattingRevisionImport.test.ts src/docx/docxFormattingRevisionExport.test.ts",
+    "tauri": "tauri"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2.12.1",
+    "@tauri-apps/plugin-dialog": "^2.8.1",
+    "@tauri-apps/plugin-fs": "^2.6.0",
+    "@tiptap/extension-color": "^3.31.4",
+    "@tiptap/extension-font-family": "^3.31.4",
+    "@tiptap/extension-highlight": "^3.31.4",
+    "@tiptap/extension-table": "^3.31.4",
+    "@tiptap/extension-table-cell": "^3.31.4",
+    "@tiptap/extension-table-header": "^3.31.4",
+    "@tiptap/extension-table-row": "^3.31.4",
+    "@tiptap/extension-text-align": "^3.31.4",
+    "@tiptap/extension-text-style": "^3.31.4",
+    "@tiptap/react": "^3",
+    "@tiptap/starter-kit": "^3",
+    "@types/jszip": "^3.4.0",
+    "@types/katex": "^0.16.8",
+    "@types/xmldom": "^0.1.34",
+    "@xmldom/xmldom": "^0.9.12",
+    "jszip": "^3.10.2",
+    "katex": "^0.19.0",
+    "lucide-react": "^0.577.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "zustand": "^5"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2",
+    "@types/node": "^26.6.4",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^6.0.2",
+    "typescript": "~6.0.3",
+    "vite": "^8.0.16"
+  }
+}

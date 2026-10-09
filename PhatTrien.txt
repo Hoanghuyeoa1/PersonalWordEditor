@@ -1,0 +1,54 @@
+Có. Sau khi đối chiếu roadmap 7 phase với trạng thái hiện tại, mình nghĩ dự án của bạn đã qua giai đoạn “thêm chức năng Word cơ bản”. Phase 7 đã có hướng Command Palette, Slash Command, Version History và Focus Mode, nên phát triển tiếp nên tập trung vào **độ sâu của editor, khả năng làm luận văn/tài liệu lớn và độ tương thích Word**, thay vì thêm nhiều nút nhỏ lẻ. Pasted text
+
+Mình đề xuất theo thứ tự ưu tiên sau:
+
+1. **Styles Engine 2.0 — rất nên làm.** Hiện mới chủ yếu có Normal và Heading 1–3. Hãy tiến tới Custom Styles giống Word: tạo/sửa/xóa style; style kế thừa; Paragraph spacing before/after; first-line/hanging indent; character style; áp dụng style toàn tài liệu; cập nhật style từ selection. Sau đó Heading/TOC/References sẽ mạnh lên rất nhiều. Đây là nâng cấp nền tảng hơn là một tính năng rời rạc.
+---- Xong
+
+2. **Advanced Page Layout / Pagination Engine 2.0.** Page Engine hiện rất mạnh nhưng kiến trúc trước đây cố tình không bẻ một paragraph dài qua khe giữa hai trang để tránh phá caret/IME/selection. README Đây là một trong những khoảng cách lớn nhất với Word thật. Có thể tiến tới true page-flow với paragraph splitting, `keep with next`, `keep lines together`, widow/orphan control, page-break-before và xử lý bảng qua nhiều trang. Đây sẽ là phase khó nhưng giá trị cực cao.
+---- Đang làm
+
+3. **Table Engine 2.0.** Table hiện đã có merge/split, resize, alignment, shading và border, nhưng DOCX vẫn còn giới hạn về **vertical merge/rowspan**. README Có thể bổ sung rowspan, repeat header row trên mỗi trang, AutoFit Contents/Window, cell margins, row height, distribute rows/columns, table styles và bảng chạy xuyên nhiều trang.
+---- Đang làm
+
+4. **DOCX Fidelity 2.0.** Đây là hướng cực hợp lý vì engine OOXML của bạn đã có nền móng tốt. Nâng tiếp: OMML equation thật thay vì text LaTeX fallback; floating image/text box; text wrapping Square/Tight/Top & Bottom; Shape mapping; vertical table merge; advanced field codes; styles nâng cao. Hiện các đối tượng như Chart/SmartArt/WordArt và text wrapping nâng cao vẫn thuộc nhóm chưa được hỗ trợ đầy đủ. README Không cần hỗ trợ tất cả OOXML, chỉ chọn những thứ sinh viên/thesis dùng nhiều.
+---- Đang làm
+
+5. **Track Changes 2.0 — Formatting Revisions.** Review Engine hiện theo dõi insert/delete rất tốt, nhưng README vẫn chỉ ra chưa track riêng các thay đổi formatting như `w:rPrChange` và `w:pPrChange`. README Có thể mở rộng thành: đổi font, size, bold, alignment, spacing, style, indent cũng trở thành revision; Accept/Reject Formatting Change; lọc hiển thị Insert/Delete/Formatting. Đây là nâng cấp rất “Word thật”.
+---- Đang làm
+
+6. **Comments 2.0 — Threaded Comments.** Hiện threaded comments từ DOCX bị làm phẳng thành comment độc lập. README Có thể phát triển reply thread, mention, resolved thread, timestamp history và DOCX modern comments mapping nếu muốn tăng độ tương thích review.
+
+7. **Grammar/Proofing Engine 2.0.** Grammar hiện là LocalGrammarProvider với các rule cơ bản. README Có thể thêm kiến trúc nhiều provider: Basic Offline → LanguageTool Local/Server tùy chọn → AI provider tùy chọn; sentence-level analysis; style suggestions; repeated phrases; passive voice; Vietnamese punctuation/style rules. Nên giữ local engine làm fallback để app vẫn chạy offline.
+
+8. **Bookmark + Go To Engine.** References hiện có Heading, TOC, Footnote, Caption, Cross-reference và Citation rất mạnh. README Bước tiếp theo tự nhiên là Bookmark semantic: `ref_bookmark_<id>`, Insert Bookmark, Go To Bookmark, Cross-reference → Bookmark. Sau đó làm một hộp `Go To` kiểu Word cho Page / Heading / Bookmark / Footnote / Comment / Figure / Table.
+
+9. **List of Figures / List of Tables / List of Equations.** Bạn đã có Caption Engine nên đây gần như là phần tiếp nối trực tiếp. Tự động quét caption → tạo Danh mục hình, Danh mục bảng, Danh mục công thức; F9 update; page numbers; click navigation; DOCX export. Với đồ án/luận văn, tính năng này có giá trị rất cao.
+
+10. **Academic / Thesis Mode.** Đây là chức năng mình đánh giá rất hợp với mục tiêu dự án. Không phải clone Word mà tạo một workspace chuyên cho đồ án: Heading numbering `1 → 1.1 → 1.1.1`; danh mục hình/bảng; bibliography consistency; kiểm tra citation không có source; source không được cited; caption thiếu; heading hierarchy lỗi; margin/font/spacing theo template trường; checklist trước khi nộp. References Engine hiện tại đã cung cấp gần hết dữ liệu cần thiết để xây module này.
+
+11. **Document Inspector / Preflight Checker.** Trước khi Save DOCX/PDF, chạy kiểm tra: broken cross-reference, missing citation source, orphan comment, missing image alt text, duplicate heading/bookmark ID, invalid table, unsupported DOCX object, layout overflow, missing caption. Trả ra bảng `Error / Warning / Info` và click để nhảy đến vị trí lỗi. Đây là tính năng rất hữu ích cho tài liệu lớn.
+
+12. **Compare Documents.** Cho chọn `Document A` và `Document B` → so sánh AST semantic → hiển thị insert/delete/format changes bằng chính Track Changes Engine hiện tại. Sau đó có thể `Merge Changes`. Đây là một tính năng lớn nhưng bạn đã có phần lớn nền tảng: semantic AST + Track Changes + stable IDs.
+
+13. **Template Engine.** Thêm `.mwt` hoặc template nằm trên `.mwd`: Báo cáo, luận văn, CV, biên bản, báo cáo thực tập, tài liệu kỹ thuật. Template có page settings, styles, heading scheme, header/footer, placeholder và bibliography style. `File → New from Template`. Giá trị thực tế rất cao nhưng độ khó thấp hơn Pagination 2.0.
+
+14. **Fields & Dynamic Content Engine.** Xây semantic field node cho `{PAGE}`, `{NUMPAGES}` hiện có rồi mở rộng thành `DATE`, `TIME`, `TITLE`, `AUTHOR`, `SECTION`, `SECTIONPAGES`, document properties và custom fields. Sau này TOC/Cross-reference cũng có thể tiến gần field architecture của Word hơn.
+
+15. **Content Controls / Fillable Documents.** Text placeholder, checkbox, dropdown, date field và protected field. Rất hữu ích cho mẫu đơn, biên bản, form cá nhân. Có thể dùng semantic node thay vì HTML input nhúng trực tiếp để không phá AST.
+
+16. **Document Outline 2.0.** Outline hiện chủ yếu phục vụ navigation. Có thể biến nó thành structural editor: drag Heading 2 sang vị trí khác → di chuyển cả section nội dung; promote/demote H1/H2/H3; collapse sections; rename heading inline. Đây là một trong những tính năng mà editor của bạn có thể làm tiện hơn Word.
+
+17. **Advanced Search 2.0.** Find/Replace hiện có thể tiến thành `Navigation Search`: tìm text + formatting + styles + headings + comments + references. Ví dụ “tìm tất cả Times New Roman 12”, “tìm Heading 2”, “tìm citation IEEE”, “replace formatting only”. Với document dài sẽ rất mạnh.
+
+18. **Accessibility Checker.** Kiểm tra image thiếu alt text, heading hierarchy sai, contrast text thấp, table thiếu header, hyperlink text không rõ nghĩa, document title thiếu. Nó tận dụng được semantic AST rất tốt và ít rủi ro phá editor.
+
+19. **PDF Export Engine chuẩn.** Roadmap ban đầu đặt PDF là mục tiêu quan trọng, nhưng tài liệu hiện tại tập trung chủ yếu vào `.mwd` và DOCX. Nếu Phase 7 của bạn mới chỉ có command gọi Export PDF chứ chưa có engine PDF hoàn chỉnh, đây nên là ưu tiên cao: giữ page size, margins, page break, header/footer, page numbers, table/image/equation/caption/TOC. Roadmap ban đầu cũng coi PDF đặc biệt quan trọng cho sinh viên. Pasted text
+
+20. **Compatibility Report khi Import/Export DOCX.** Thay vì âm thầm fallback, sau import có thể báo: `3 features preserved`, `1 feature approximated`, `1 unsupported object ignored`. Khi export cũng vậy. Điều này phù hợp với triết lý hiện tại của dự án là **không tuyên bố tương thích 100% Word**, mà ưu tiên bảo toàn dữ liệu an toàn. README
+
+Nếu xét **giá trị / công sức / khả năng tận dụng kiến trúc hiện tại**, thứ tự mình sẽ ưu tiên là:
+
+**Styles Engine 2.0 → List of Figures/Tables → Bookmark + Go To → Academic/Thesis Mode → Document Inspector → Table 2.0 → Track Changes 2.0 → DOCX Fidelity 2.0 → Pagination 2.0 → Compare Documents.**
+
+Trong đó mình đặc biệt đánh giá cao **Academic/Thesis Mode**. Phase 6 của bạn đã xây gần như toàn bộ “nguyên liệu” cần thiết — Heading, TOC, Caption, Cross-reference, Footnote, Citation, Bibliography và page information — nên chỉ cần thêm một lớp orchestration/validation phía trên là Word Editor có thể trở thành **trình soạn đồ án/luận văn chuyên dụng**, thay vì chỉ là một bản Word thu nhỏ. README
